@@ -35,7 +35,8 @@ func forLinux() string {
 	if err := cmd.Start(); err != nil {
 		panic(err)
 	}
-
+	defer cmd.Wait()
+	
 	var str string
 
 	if b, err := ioutil.ReadAll(stdout); err == nil {
@@ -57,7 +58,7 @@ func forOSX() string {
 	if err := cmd.Start(); err != nil {
 		panic(err)
 	}
-
+	defer cmd.Wait()
 	var str string
 
 	if b, err := ioutil.ReadAll(stdout); err == nil {
